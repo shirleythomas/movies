@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sortOptions">
+        <item>@string/pref_option_popularity</item>
+        <item>@string/pref_option_rating</item>
+    </string-array>
+    <string-array name="sortValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="pref_example_list_titles">
+        <item>Popularity</item>
+        <item>Rating</item>
+        <item>Favorites</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>

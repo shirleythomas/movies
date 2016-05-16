@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
+    </style>
+    <style name="ActionBarTheme" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="background">@color/dark_red</item>
+    </style>
+
+</resources>
