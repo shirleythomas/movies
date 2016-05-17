@@ -140,7 +140,8 @@
             android:text="Mark as Favorite"
             android:id="@+id/favoriteButton"
             android:layout_below="@+id/overview"
-            android:layout_alignRight="@+id/overview"/>
+            android:layout_alignRight="@+id/overview"
+            android:visibility="invisible" />
 
 
 

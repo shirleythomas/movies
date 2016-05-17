@@ -12,11 +12,10 @@ import com.project.shirley.popularmovies.widget.GridViewAdapter;
 import java.util.List;
 
 /**
- * Created by shirthom on 5/16/2016.
+ * Created by Shirley Thomas on 5/16/2016.
  */
-public class LoadMoviePostersTask extends AsyncTask<Void, Void, Boolean> {
+public class LoadMoviePostersTask extends AsyncTask<Void, Void, List<Movie>> {
 
-    List<Movie> movies = null;
     private Context context;
     private GridViewAdapter gridViewAdapter;
 
@@ -26,7 +25,8 @@ public class LoadMoviePostersTask extends AsyncTask<Void, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Void... params) {
+    protected List<Movie> doInBackground(Void... params) {
+        List<Movie> movies = null;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String sortOption = sharedPref.getString("options_list", "1");
 
@@ -42,12 +42,12 @@ public class LoadMoviePostersTask extends AsyncTask<Void, Void, Boolean> {
                 movies = MovieService.getFavoriteMovies(context);
                 break;
         }
-        return true;
+        return movies;
     }
 
-    // Sets the Bitmap returned by doInBackground
+    // Sets the List<Movie> returned by doInBackground
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
+    protected void onPostExecute(List<Movie> movies) {
         if (movies != null && gridViewAdapter != null) {
             gridViewAdapter.setGridData(movies);
         }

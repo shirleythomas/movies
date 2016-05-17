@@ -15,13 +15,11 @@ import com.project.shirley.popularmovies.widget.ListViewAdapter;
 import java.util.List;
 
 /**
- * Created by shirthom on 5/16/2016.
+ * Created by Shirley Thomas on 5/16/2016.
  */
 
-public class LoadTrailersTask extends AsyncTask<Integer, Void, Boolean> {
+public class LoadTrailersTask extends AsyncTask<Integer, Void, List<String>> {
 
-    List<String> videoKeys;
-    List<String> list;
     boolean isFavorite;
     private GridViewAdapter gridViewAdapter;
     private View rootView;
@@ -34,18 +32,17 @@ public class LoadTrailersTask extends AsyncTask<Integer, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Integer... params) {
+    protected List<String> doInBackground(Integer... params) {
 
 
         Log.v("movie.getId", params[0] + "");
         isFavorite = MovieService.isFavorite(context, params[0]);
-        videoKeys = MovieService.getMovieTrailers(params[0]);
-        return true;
+        return MovieService.getMovieTrailers(params[0]);
     }
 
-    // Sets the Bitmap returned by doInBackground
+    // Sets the List<String> returned by doInBackground
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
+    protected void onPostExecute(List<String> videoKeys) {
         if (!videoKeys.isEmpty()) {
             gridViewAdapter.setGridData(videoKeys);
             View horizontalbar = (View)rootView.findViewById(R.id.horizontalbar);
@@ -53,11 +50,11 @@ public class LoadTrailersTask extends AsyncTask<Integer, Void, Boolean> {
             TextView trailerTitle = (TextView)rootView.findViewById(R.id.trailer);
             trailerTitle.setVisibility(View.VISIBLE);
         }
+        Button favoriteButton  = (Button)rootView.findViewById(R.id.favoriteButton);
         if(isFavorite){
-            Button favoriteButton  = (Button)rootView.findViewById(R.id.favoriteButton);
             favoriteButton.setText("Remove from Favorites");
-            favoriteButton.setVisibility(View.VISIBLE);
         }
+        favoriteButton.setVisibility(View.VISIBLE);
     }
 
 }

@@ -44,6 +44,15 @@ public class MainActivityFragment extends Fragment {
         gridViewAdapter = new GridViewAdapter(getActivity(), R.layout.movie_list, gridData);
         grid.setAdapter(gridViewAdapter);
 
+        if (savedInstanceState != null) {
+            gridData = savedInstanceState.getParcelableArrayList(GRID_DATA);
+            gridViewAdapter.setGridData(gridData);
+            isDataLoaded = true;
+        } else {
+            isDataLoaded = false;
+            //new LoadMoviePostersTask(getActivity(), gridViewAdapter).execute();
+        }
+
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -96,14 +105,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            gridData = savedInstanceState.getParcelableArrayList(GRID_DATA);
-            gridViewAdapter.setGridData(gridData);
-            isDataLoaded = true;
-        } else {
-            isDataLoaded = false;
-            //new LoadMoviePostersTask(getActivity(), gridViewAdapter).execute();
-        }
+
     }
 
     @Override

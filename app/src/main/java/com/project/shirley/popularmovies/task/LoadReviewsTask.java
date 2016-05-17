@@ -18,11 +18,11 @@ import com.project.shirley.popularmovies.widget.ListViewAdapter;
 import java.util.List;
 
 /**
- * Created by shirthom on 5/1/2016.
+ * Created by Shirley Thomas on 5/1/2016.
  */
-public class LoadReviewsTask extends AsyncTask<Integer, Void, Boolean> {
+public class LoadReviewsTask extends AsyncTask<Integer, Void, List<Review>> {
 
-    List<Review> reviews;
+
     private ListViewAdapter listViewAdapter;
     private View rootView;
 
@@ -32,14 +32,13 @@ public class LoadReviewsTask extends AsyncTask<Integer, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Integer... params) {
-        reviews = MovieService.getMovieReviews(params[0]);
-        return true;
+    protected List<Review> doInBackground(Integer... params) {
+        return MovieService.getMovieReviews(params[0]);
     }
 
     // Sets the Bitmap returned by doInBackground
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
+    protected void onPostExecute(List<Review> reviews) {
         if (!reviews.isEmpty()) {
             listViewAdapter.setListData(reviews);
             View horizontalbar1 = (View)rootView.findViewById(R.id.horizontalbar1);
